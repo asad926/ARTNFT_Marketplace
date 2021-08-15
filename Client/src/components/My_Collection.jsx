@@ -25,6 +25,7 @@ self = this;
 console.log("Nfts Loeaded.....")
 self.loadDB(); 
 self.openModal();
+if(window.ethereum)
 window.ethereum.on('accountsChanged', async function (accounts) {
   self.loadDB(); 
 })

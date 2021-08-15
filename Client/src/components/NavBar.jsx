@@ -19,6 +19,7 @@ class navBar extends Component {
         }
         else console.log("Please install metamask!!");
         let self = this;
+        if(window.ethereum)
         ethereum.on('accountsChanged', async function (accounts) {
             self.connectToMetaMask()
         })

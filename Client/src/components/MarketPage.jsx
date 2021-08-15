@@ -16,6 +16,7 @@ class MarketPage extends Component {
     let self = this;
     console.log("Nfts Loeaded.....")
     this.loadDB();
+    if(window.etherem)
     window.ethereum.on('accountsChanged', async function (accounts) {
       self.loadDB()
     })

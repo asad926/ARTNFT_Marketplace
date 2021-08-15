@@ -184,7 +184,7 @@ class itemCardDetail extends Component {
         this.loadDB();
         auction = new Auction();
         this.getUserBalance()
-        
+        if(window.ethereum)
         window.ethereum.on('accountsChanged', async function (accounts) {
             self.loadDB()
           })
