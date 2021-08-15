@@ -261,10 +261,10 @@ export default function ItemCard({ nftData }) {
         if (nftData.auction) {
             let time = nftData.auction.time
             let currentTime = parseInt(new Date().getTime() / 1000);
-            if (time === 0) {
+            time = time - currentTime;
+            if (parseInt(time) <= 0) {
                 time = "Auction Ended"
             } else {
-                time = time - currentTime;
                 var seconds = time;
                 var minutes = Math.floor(seconds / 60);
                 var hours = Math.floor(minutes / 60);
@@ -273,7 +273,8 @@ export default function ItemCard({ nftData }) {
                 hours = hours - (days * 24);
                 minutes = minutes - (days * 24 * 60) - (hours * 60);
                 seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
-                setAuctionTimer(days + " D:" + hours + " H:" + minutes + " M:" + seconds + " S");
+                time = days + " D:" + hours + " H:" + minutes + " M:" + seconds + " S";
+                setAuctionTimer(time);
             }
         }
 

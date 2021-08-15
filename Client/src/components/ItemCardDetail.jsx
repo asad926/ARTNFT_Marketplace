@@ -263,7 +263,7 @@ class itemCardDetail extends Component {
             let time = nftData.auction.time
             let currentTime = parseInt(new Date().getTime() / 1000);
             time = time - currentTime;
-            if (time <= 0) {
+            if (parseInt(time) <= 0) {
                 time = "Auction Ended"
             } else {
                 var seconds = time;
