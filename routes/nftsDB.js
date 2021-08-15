@@ -1,13 +1,13 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017';
+const url = process.env.MONGODB_ADDON_URI;
 var dbo;
-  
+var database = "bph88zeerdzrnfn";
 module.exports = {
 
     insertNftsData: function(nfts,callback){
     MongoClient.connect(url,{useUnifiedTopology: true}, function(err, client) {
     if(err) throw err;
-    dbo = client.db("NFT721_DB"); 
+    dbo = client.db(database); 
     dbo.collection("nfts").insertOne(nfts, function(err, res) {
       if (err) throw err;
       console.log("1 document inserted");
@@ -21,7 +21,7 @@ module.exports = {
       delete nfts.price;
       MongoClient.connect(url,{useUnifiedTopology: true}, function(err, client) {
       if(err) throw err;
-      dbo = client.db("NFT721_DB"); 
+      dbo = client.db(database); 
       dbo.collection("nfts").updateOne({info: {$elemMatch: {nftID:id}}},{$set:{auction:nfts,price:pr}}, function(err, res) {
         if (err) throw err;
         console.log("1 document updated");
@@ -33,7 +33,7 @@ module.exports = {
         console.log("Update Id: " + id);
         MongoClient.connect(url,{useUnifiedTopology: true}, function(err, client) {
         if(err) throw err;
-        dbo = client.db("NFT721_DB");
+        dbo = client.db(database);
         if(newOwner)
         dbo.collection("nfts").updateOne({info: {$elemMatch: {nftID:id}},"owners.role": "OWNER"},{$set:{"owners.$.name":newOwner,price:"0","auction.onAuction":false,"auction.time":0}}, function(err, res) {
           if (err) throw err;
@@ -52,7 +52,7 @@ module.exports = {
         console.log("Update Id: " + id);
         MongoClient.connect(url,{useUnifiedTopology: true}, function(err, client) {
         if(err) throw err;
-        dbo = client.db("NFT721_DB"); 
+        dbo = client.db(database); 
         dbo.collection("nfts").updateOne({info: {$elemMatch: {nftID:id}}},{$push:{"auction.bids":bid}}, function(err, res) {
           if (err) throw err;
           console.log("1 document updated");
@@ -63,7 +63,7 @@ module.exports = {
     getNftsData:async function(){
 
     let client = await MongoClient.connect(url,{useUnifiedTopology: true,useNewUrlParser: true});
-     var dbo = client.db("NFT721_DB");
+     var dbo = client.db(database);
      let collection =  dbo.collection("nfts");
      let res = await collection.find({}).toArray();
      console.log(res);
@@ -72,7 +72,7 @@ module.exports = {
 ,
 getNftData:async function(id){
   let client = await MongoClient.connect(url,{useUnifiedTopology: true,useNewUrlParser: true});
-   var dbo = client.db("NFT721_DB");
+   var dbo = client.db(database);
    let collection =  dbo.collection("nfts");
    let res = await collection.findOne({info: {$elemMatch: {nftID:id}}});
    console.log(res);
@@ -80,7 +80,7 @@ getNftData:async function(id){
 },
 getUserNfts:async function(address){
   let client = await MongoClient.connect(url,{useUnifiedTopology: true,useNewUrlParser: true});
-   var dbo = client.db("NFT721_DB");
+   var dbo = client.db(database);
    let collection =  dbo.collection("nfts");
    let res = await collection.find({owners: {$elemMatch: {name:address}}}).toArray();
    console.log(res);
@@ -89,7 +89,7 @@ getUserNfts:async function(address){
 ,
 getNftAuction:async function(id){
   let client = await MongoClient.connect(url,{useUnifiedTopology: true,useNewUrlParser: true});
-   var dbo = client.db("NFT721_DB");
+   var dbo = client.db(database);
    let collection =  dbo.collection("nfts");
    let res = await collection.findOne({auction: {$elemMatch: {nftID:id}}});
    console.log(res);
