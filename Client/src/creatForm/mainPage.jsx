@@ -19,11 +19,9 @@ class mainPage extends Component {
               nft721: null, nft1155: null, auctionContract: null,web3: null            
              }
     loadSingle = () => {
-        console.log("Loading form");
           this.setState({ formComponent:"single"})
     }
     loadMultiple = () => {
-        console.log("Loading form");
           this.setState({ formComponent:"multiple"})
     }
 
@@ -55,7 +53,6 @@ isMetaMaskInstalled() {
     try {
       //Will Start the MetaMask Extension
       web3 = await getWallet();
-      console.log("Web3 :"+web3);
       let account = await web3.eth.getAccounts();
      // this.setConnectBtn("Create")
       this.setState({web3: web3});

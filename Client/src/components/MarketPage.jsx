@@ -14,7 +14,6 @@ class MarketPage extends Component {
 
   componentDidMount() {
     let self = this;
-    console.log("Nfts Loeaded.....")
     this.loadDB();
     if(window.etherem)
     window.ethereum.on('accountsChanged', async function (accounts) {
@@ -27,10 +26,8 @@ class MarketPage extends Component {
       let link = "/nfts";
       let res = await axios.get(link);
       if (res.status === 200) {
-        console.log("NFTs loaded: " + JSON.stringify(res.data))
 
         this.setState({ data: res.data });
-        console.log("Data loaded:" + JSON.stringify(res.data[0].info[0].nftID))
       }
 
     } catch (e) {

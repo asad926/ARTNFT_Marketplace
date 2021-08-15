@@ -14,7 +14,6 @@ class creatMultiple extends Component {
     state = {onSale: false }
 
     nftOnSale = (e)=> {
-        console.log("Checked!!!"+e.target.checked);
         this.setState({onSale: e.target.checked});
     }
     state = {onSale: false, 
@@ -33,9 +32,7 @@ handleInput = async (e) => {
    e.preventDefault()
    const inputFile = e?.target?.files[0];
    uploadFile = inputFile;
-   console.log("File Selected!!");
    if (inputFile) {
-   console.log("File Selected!!");
      const base64 = await this.toBase64(inputFile)
      this.setState({selectedFile:base64, previewText:""})
    }
@@ -50,7 +47,6 @@ toBase64 = file => new Promise((resolve, reject) => {
  });
 
  addNewInput = ()=>{
-     console.log("Changedd!!!")
      var properties = document.getElementById('propertyInputs').getElementsByTagName("input");
     let p1 =properties[properties.length-2].value;
     let p2 = properties[properties.length-1].value;
@@ -68,9 +64,7 @@ let account = await web3.eth.getAccounts();
 
 let supply = await nft1155.methods.totalNftTypes().call();
 let id = parseInt(supply);
-console.log("Token ID: "+id+1)
 const nftTransaction = await nft1155.methods.mint(id+1,[[account[0],parseInt(royalty)*100]],parseInt(tokenSupply),"/"+(id+1)).send({from:account[0]});
-console.log("nftID:  " + JSON.stringify(nftTransaction.events.Transfer.returnValues.TokenId));
 }
 
 async addedToIpfs() {
@@ -109,7 +103,6 @@ timeout: 3000,
          console.log(JSON.stringify(response.data.nftsURI))
          let nftsURI = response.data.nftsURI;
          this.nftContract(nftsURI, royalty, tokenSupply);
-         console.log("NFTS URI: "+nftsURI)
      } else {
          console.log("Error occurred")
      }

@@ -40,22 +40,17 @@ class creatSingle extends Component {
 
     createAuction = async () => {
         let supply = await nft721.methods.totalSupply().call();
-        console.log("  supplyNFT NEw ID: "+supply)
         supply++;
-        console.log("  supplyNFT NEw ID: "+supply)
     }
 
     nftOnSale = (e) => {
-        console.log("Checked!!!" + e.target.checked);
         this.setState({ onSale: e.target.checked });
     }
     handleInput = async (e) => {
         e.preventDefault()
         const inputFile = e?.target?.files[0];
         uploadFile = inputFile;
-        console.log("File Selected!!");
         if (inputFile) {
-            console.log("File Selected!!");
             const base64 = await this.toBase64(inputFile)
             this.setState({ selectedFile: base64, previewText: "" })
         }
@@ -70,7 +65,6 @@ class creatSingle extends Component {
     });
 
     addNewInput = () => {
-        console.log("Changedd!!!")
         var properties = document.getElementById('propertyInputs').getElementsByTagName("input");
         let p1 = properties[properties.length - 2].value;
         let p2 = properties[properties.length - 1].value;
@@ -88,9 +82,7 @@ class creatSingle extends Component {
         let account = await web3.eth.getAccounts();
         let supply = await nft721.methods.totalSupply().call();
         supply++;
-        console.log("  supplyNFT NEw ID: "+supply)
         const nftTransaction = await nft721.methods.mint(parseInt(supply), [[account[0], parseInt(royalty) * 100]], nftURI+parseInt(supply)).send({ from: account[0] });
-        console.log("nftID:  " + JSON.stringify(nftTransaction));
         this.saveNftDB(formD, nftImage, nftURI+supply, nftTransaction.events.Transfer)
     }
 

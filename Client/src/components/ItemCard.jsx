@@ -28,7 +28,11 @@ export default function ItemCard({ nftData }) {
         auction = new Auction();
         checkNftStatus();
         getUserBalance()
-    }, [account]);
+        const interval = setInterval(() => {
+            auctionTime();
+            
+        })
+    }, []);
 
     const click = async () => {
         if (nftBtn === "Bid" || nftBtn === "Bid Higher") {
@@ -44,7 +48,6 @@ export default function ItemCard({ nftData }) {
             cancelAuction();
         } else if("Create Auction") {
             openModal();
-            console.log("auction:    " + nftData)
         }else if(this.state.nftBtn === "Winner:Claim Bid") {
             claimAuction();
         }
@@ -92,7 +95,6 @@ export default function ItemCard({ nftData }) {
         let deadline = document.getElementById("deadline").value;
         let totaltime = (new Date().getTime() / 1000) + deadline * 86400;
         let auctionId = await auction.auctionId();
-        console.log("NFTs Update Id: " + id)
         let res = await auction.createAuction(id, price * 1e18, type.toLowerCase(), parseInt(totaltime))
         if(!res) return;
         let auctionData = {
@@ -137,7 +139,6 @@ export default function ItemCard({ nftData }) {
         if (nftData.auction.onAuction) {
             auctionId = nftData.auction.auction_id;
         }
-        console.log("Aution ID sdad: " + auctionId);
         if (auctionId === "null") return;
         let res = await auction.cancelAuction(auctionId);
         if(!res) return;
@@ -155,7 +156,6 @@ export default function ItemCard({ nftData }) {
                 .then(response => {
                     if (response.status === 200) {
                         console.log("Success, firm added")
-                        console.log(JSON.stringify(response.data))
                         Location.reload(false)
                     } else {
                         console.log("Error occurred")
@@ -177,7 +177,6 @@ export default function ItemCard({ nftData }) {
         if (nftData.auction.onAuction) {
             auctionId = nftData.auction.auction_id;
         }
-        console.log("Aution ID sdad: " + auctionId);
         if (auctionId === "null") return;
         let res = await auction.cancelAuction(auctionId);
         if(!res) return;
@@ -194,7 +193,6 @@ export default function ItemCard({ nftData }) {
                 .then(response => {
                     if (response.status === 200) {
                         console.log("Success, firm added")
-                        console.log(JSON.stringify(response.data))
                         Location.reload(false)
                     } else {
                         console.log("Error occurred")
@@ -212,7 +210,6 @@ export default function ItemCard({ nftData }) {
     const checkNftStatus = async () => {
         let owner = nftData.owners[1].name;
 
-        console.log(account + "===" + owner)
         if (nftData.price === '0' && owner === account[0]) {
             setNftBtn("Create Auction")
         }
@@ -229,7 +226,6 @@ export default function ItemCard({ nftData }) {
             let contract = new web3.eth.Contract(
                 AuctionContract.abi, AuctionContract.contractAddress);
             let bid = await contract.methods.getCurrentBid(nftData.auction.auction_id).call(); 
-            console.log("Bid Account: " + bid[1])
             if(bid[1]==="0x0000000000000000000000000000000000000000") return;
             let currentTime = parseInt(new Date().getTime()/1000);
 
@@ -252,10 +248,6 @@ export default function ItemCard({ nftData }) {
         var balance = await web3.eth.getBalance(account[0]);
         setBalance(parseFloat(balance / 1e18).toFixed(3))
     }
-
-    setInterval(() => {
-        auctionTime();
-    })
 
     const auctionTime = async () => {
         if (nftData.auction) {
@@ -307,7 +299,6 @@ export default function ItemCard({ nftData }) {
     };
     const validateBid = (e) => {
         let currentBid = (parseFloat(latestBid[0])/1e18).toFixed(3);
-        console.log("Price Changed: "+e.target.value)
         if(e.target.value >= currentBid){
             setIsBid(false);
             setErrors("")

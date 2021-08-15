@@ -43,7 +43,6 @@ class navBar extends Component {
             try {
                 //Will Start the MetaMask Extension
                 web3 = await getWallet();
-                console.log("Web3 :" + web3);
                 let accounts = await web3.eth.getAccounts();
                 // this.setConnectBtn("Create")
                 let acc = accounts[0].substring(0,6)+"......"+accounts[0].substring(36,42)

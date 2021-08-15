@@ -81,7 +81,6 @@ class itemCardDetail extends Component {
                 .then(response => {
                     if (response.status === 200) {
                         console.log("Success, firm added")
-                        console.log(JSON.stringify(response.data))
                         window.location.reload();
                     } else {
                         console.log("Error occurred")
@@ -103,7 +102,6 @@ class itemCardDetail extends Component {
         if (nftData.auction.onAuction) {
             auctionId = nftData.auction.auction_id;
         }
-        console.log("Aution ID sdad: " + auctionId);
         if (auctionId === "null") return;
         let res = await auction.cancelAuction(auctionId);
         if(!res) return;
@@ -121,7 +119,6 @@ class itemCardDetail extends Component {
                 .then(response => {
                     if (response.status === 200) {
                         console.log("Success, firm added")
-                        console.log(JSON.stringify(response.data))
                         window.location.reload();
                     } else {
                         console.log("Error occurred")
@@ -143,7 +140,6 @@ class itemCardDetail extends Component {
         if (nftData.auction.onAuction) {
             auctionId = nftData.auction.auction_id;
         }
-        console.log("Aution ID sdad: " + auctionId);
         if (auctionId === "null") return;
         let res = await auction.claimAuction(auctionId);
         if(!res) return;
@@ -161,7 +157,6 @@ class itemCardDetail extends Component {
                 .then(response => {
                     if (response.status === 200) {
                         console.log("Success, firm added")
-                        console.log(JSON.stringify(response.data))
                         //window.location.reload();
                     } else {
                         console.log("Error occurred")
@@ -228,7 +223,6 @@ class itemCardDetail extends Component {
                     let contract = new web3.eth.Contract(
                         AuctionContract.abi, AuctionContract.contractAddress);
                     let bid = await contract.methods.getCurrentBid(nftData.auction.auction_id).call(); 
-                    console.log("Bid Account: " + bid[1])
                     if(bid[1]==="0x0000000000000000000000000000000000000000") return;
                     let currentTime = parseInt(new Date().getTime()/1000);
 
@@ -309,7 +303,6 @@ class itemCardDetail extends Component {
 
      validateBid = (e) => {
         //let currentBid = (parseFloat(this.state.latestBid[0])/1e18).toFixed(3);
-        console.log("Price Changed: "+e.target.value)
         if(e.target.value > parseFloat(this.state.currentBid)){
             this.setState({isBid:false});
             this.setState({errors:""})

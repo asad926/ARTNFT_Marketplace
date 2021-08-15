@@ -22,7 +22,6 @@ class my_Collection extends Component {
 
 componentDidMount(){
 self = this;
-console.log("Nfts Loeaded.....")
 self.loadDB(); 
 self.openModal();
 if(window.ethereum)
@@ -34,12 +33,10 @@ window.ethereum.on('accountsChanged', async function (accounts) {
 loadDB = async function(){
   try{
     web3 = await getWallet();
-    console.log("Web3: "+ web3);
     account = await web3.eth.getAccounts();
     let link = "/nfts/user/"+account[0];
     let res = await axios.get(link);
     if(res.status === 200){
-     console.log("NFTs loaded: "+JSON.stringify(res.data))
      this.setState({data:res.data});
 
     }
@@ -51,7 +48,6 @@ loadDB = async function(){
        if(nft.auction)
           if(nft.auction.bids.find(e=>e.account === account[0])){
             bids.push(nft);
-            console.log("bids loaddeded: " + nft)
           }
        
      })
