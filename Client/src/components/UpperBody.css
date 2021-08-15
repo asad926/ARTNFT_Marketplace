@@ -1,0 +1,16 @@
+.upperbody_category_banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  margin-top: 1px;
+  margin-bottom: 24px;
+  background-color: #212529;
+}
+
+.market-content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

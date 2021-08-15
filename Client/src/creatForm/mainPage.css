@@ -1,0 +1,6 @@
+.sp_card_create {
+  border: 1px solid transparent;
+}
+.sp_card_create:hover {
+  border: 1px solid coral;
+}

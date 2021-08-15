@@ -1,0 +1,90 @@
+.myCollection_box {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1300px;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+}
+.myCollection_ui_avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -3px;
+  background-color: #f8f8f8;
+}
+.myCollection_ui_avatar_icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: top;
+}
+.myCollection_share_btn {
+  border: 1px solid #6c757d !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  display: flex !important;
+  align-items: center;
+}
+.myCollection_tabs {
+  font-size: 18px;
+  height: 40px;
+  line-height: 34px;
+  min-width: 100px;
+  background-color: rgba(240, 185, 11, 0.5);
+  /* border-color: transparent; */
+  color: inherit !important;
+  display: inline-block;
+  margin-right: 20px;
+  border-radius: 5px;
+  text-align: center;
+  padding: 0 20px;
+  /* border: 2px solid rgba(240, 185, 11, 0.5) !important; */
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+.myCollection_tabs_on {
+  background-color: #f0b90b !important;
+}
+.myCollection_tab_hide {
+  display: none;
+}
+.myCollection_tab_show {
+  display: block;
+}
+.myCollection_sort_field {
+  border: 2px solid #eec84d !important;
+  padding: 6px;
+  border-radius: 5px;
+}
+.myCollection_sort_field:focus-visible {
+  border: 2px solid #eec84d !important;
+  outline: none !important;
+}
+.myCollection_list_main_prod {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.myCollection_model_form_control {
+  border: 1px solid hsla(0, 0%, 39.2%, 0.2) !important;
+  background-color: transparent !important;
+}
+.myCollection_model_form_control:focus {
+  color: inherit;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  border-color: rgba(24, 24, 24, 0.2) !important;
+}
+.myCollection_model_Next_btn {
+  border-radius: 12px !important;
+  background-color: rgb(175, 72, 255) !important;
+  border-color: rgb(175, 72, 255) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}

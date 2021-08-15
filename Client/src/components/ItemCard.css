@@ -1,0 +1,62 @@
+.item-card {
+  background: #fff;
+  box-shadow: 0 4px 30px rgb(0 0 0 / 5%);
+  border-radius: 6px;
+  width: 270px;
+  height: 477px;
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin: 3px;
+  margin-bottom: 15px;
+}
+
+.item-card--thumbnail {
+  background-color: #f3f4f7;
+  height: 256px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.nft-image__vertical {
+  height: calc(100% - 28px);
+  width: auto;
+  margin: 14px 0;
+}
+
+.item-card--body {
+  flex: 1;
+  padding: 20px 5px 12px;
+}
+
+.title {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.contract-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item_card_badge {
+  background-color: #f2e9ff;
+  color: #7927ff;
+  border-radius: 59px;
+  padding: 0.6em 0.5em;
+  height: 25px;
+  font-size: 10px;
+  line-height: 14px;
+  min-width: 26px;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
