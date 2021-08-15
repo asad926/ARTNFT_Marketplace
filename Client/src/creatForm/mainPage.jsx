@@ -38,7 +38,7 @@ class mainPage extends Component {
         if(this.isMetaMaskInstalled)
         this.connectToMetaMask();
         else console.log("Please install metamask!!");
-      
+      if(window.ethereum)
       window.ethereum.on('accountsChanged', async function (accounts) {
         self.connectToMetaMask()
       })
