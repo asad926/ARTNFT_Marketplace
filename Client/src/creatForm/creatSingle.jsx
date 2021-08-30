@@ -3,6 +3,7 @@ import SiteSymb from './icon/site_symb.png';
 import { FaArrowLeft } from "react-icons/fa";
 import "./creatSingle.css";
 import axios from 'axios';
+import erc721 from "../contracts/ArtNft721.json"
 import Modal from "react-modal";
 import Auction from "../nfts/artAuction"
 import ClipLoader from "react-spinners/ClockLoader";
@@ -31,11 +32,16 @@ class creatSingle extends Component {
     }
     element = React.createRef();
 
-    componentDidMount() {
+    componentDidMount=async () =>{
         nft721 = this.props.data.nft721;
         auctionContract = this.props.data.auctionContract;
         web3 = this.props.data.web3;
+        let account = await web3.eth.getAccounts();
         auction = new Auction();
+        let approved = await nft721.methods.isApprovedForAll(account[0],erc721.contractAddress).call();
+        if(!approved) {
+           await nft721.methods.setApprovalForAll(erc721.contractAddress,true).send({from: account[0]});
+        }
     }
 
     createAuction = async () => {

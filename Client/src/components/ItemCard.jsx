@@ -32,7 +32,7 @@ export default function ItemCard({ nftData }) {
             auctionTime();
             
         })
-    }, []);
+    }, [account,auction,web3]);
 
     const click = async () => {
         if (nftBtn === "Bid" || nftBtn === "Bid Higher") {
@@ -241,16 +241,19 @@ export default function ItemCard({ nftData }) {
     }
 
     const getUserBalance = async () => {
+        try{
         let dogToken = new web3.eth.Contract(
             Token.abi, Token.contractAddress);
         let dog = await dogToken.methods.balanceOf(account[0]).call();
         setDogBalance(parseFloat(dog / 1e18).toFixed(3))
         var balance = await web3.eth.getBalance(account[0]);
         setBalance(parseFloat(balance / 1e18).toFixed(3))
+        }catch(e){console.log(e.Error)}
     }
 
     const auctionTime = async () => {
         if (nftData.auction) {
+            if(!nftData.auction.onAuction) return;
             let time = nftData.auction.time
             let currentTime = parseInt(new Date().getTime() / 1000);
             time = time - currentTime;

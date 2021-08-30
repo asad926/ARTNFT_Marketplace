@@ -63,7 +63,7 @@ class MarketPage extends Component {
         </ul>
         <UpperBody />
         <div className="tab-content" style={{ backgroundColor: "rgb(243, 244, 247)" }}>
-          <div className="container-fluid" style={{ display: "flex", justifyContent: "space-between" }}>
+          {/* <div className="container-fluid" style={{ display: "flex", justifyContent: "space-between" }}>
             <button type="button" className="btn" data-toggle="collapse" data-target="#filter">Filter Items</button>
             <button type="button" className="btn" data-toggle="" data-target="">Latest First</button>
           </div>
@@ -251,6 +251,7 @@ class MarketPage extends Component {
               </div>
             </div>
           </div>
+           */}
           <div className="d-flex flex-wrap">
             {this.state.data.map((el, i) => {
               return (

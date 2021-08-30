@@ -67,11 +67,7 @@ isMetaMaskInstalled() {
         let auction = new web3.eth.Contract(
             Auction.abi, Auction.contractAddress);
         this.setState({auctionContract: auction});
- 
-        let approved = await n721.methods.isApprovedForAll(account[0],Auction.contractAddress).call();
-        if(!approved) {
-           await n721.methods.setApprovalForAll(Auction.contractAddress,true).send({from: account[0]});
-        }
+
   
     } catch (error) {
       console.error(error);
