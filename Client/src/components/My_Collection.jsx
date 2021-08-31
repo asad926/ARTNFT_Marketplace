@@ -213,7 +213,7 @@ class my_Collection extends Component {
                 </div>
               </div>
               <div className="pb-5">
-                <div className="myCollection_list_main_prod justify-content-center">
+                <div className="justify-content-center">
                   {this.state.data.length > 0 ?
                     <div className="d-flex flex-wrap">
                       {this.state.data.map((el, i) => {

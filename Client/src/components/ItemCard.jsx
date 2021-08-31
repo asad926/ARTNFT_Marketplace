@@ -4,6 +4,7 @@ import verified from '../Icons/verified.svg';
 import "./ItemCard.css";
 import { Link } from "react-router-dom";
 import Auction from "../nfts/artAuction"
+import Auction1155 from "../nfts/artAuction1155"
 import Modal from "react-modal";
 import axios from 'axios';
 import getWallet from '../nfts/connectWallet';
@@ -25,7 +26,6 @@ export default function ItemCard({ nftData }) {
     useEffect(async() => {
         web3 = await getWallet()
         account = await web3.eth.getAccounts();
-        auction = new Auction();
         checkNftStatus();
         getUserBalance()
         const interval = setInterval(() => {
@@ -208,6 +208,11 @@ export default function ItemCard({ nftData }) {
     }
 
     const checkNftStatus = async () => {
+        if(nftData.type==="Single Item"){
+        auction = new Auction();
+        }else{
+            auction = new Auction1155();
+        }
         let owner = nftData.owners[1].name;
 
         if (nftData.price === '0' && owner === account[0]) {

@@ -74,7 +74,7 @@ class itemCardDetail extends Component {
             time: parseInt(totaltime),
             bids: []
         }
-        let link = "nfts/update/" + nftId;
+        let link = "/nfts/update/" + nftId;
         try {
             axios({
                 method: "POST",

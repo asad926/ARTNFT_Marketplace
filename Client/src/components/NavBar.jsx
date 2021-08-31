@@ -4,20 +4,22 @@ import Logo01 from '../Icons/art_logo.png';
 import search_icon from '../Icons/search-icon.svg';
 import getWallet from "../nfts/connectWallet"
 import Default_avatar from "../Icons/avatardefault.png";
+import axios from 'axios';
 
 const { ethereum } = window;
-let web3
+let web3,accounts
 class navBar extends Component {
     state = {
         metaMask : false,
-        account : ""
+        account : "",
+        user: null
     }
 
-    componentDidMount() {
-        if (this.isMetaMaskInstalled) {
-            this.connectToMetaMask();
-        }
-        else console.log("Please install metamask!!");
+    componentDidMount= async()=> {
+        web3 = await getWallet();
+        accounts = await web3.eth.getAccounts();
+        this.loadDB();
+        this.connectToMetaMask()
         let self = this;
         if(window.ethereum)
         ethereum.on('accountsChanged', async function (accounts) {
@@ -25,6 +27,21 @@ class navBar extends Component {
         })
 
     }
+
+    
+  loadDB = async function () {
+    try {
+      let link = "/user/"+ accounts[0];
+      let res = await axios.get(link);
+      if (res.status === 200) {
+         console.log("USer NAV DAta: "+ JSON.stringify(res.data))
+        this.setState({ user: res.data });
+      }
+
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
     connectWallet=()=>{
         if (this.isMetaMaskInstalled) {
@@ -43,7 +60,6 @@ class navBar extends Component {
             try {
                 //Will Start the MetaMask Extension
                 web3 = await getWallet();
-                let accounts = await web3.eth.getAccounts();
                 // this.setConnectBtn("Create")
                 let acc = accounts[0].substring(0,6)+"......"+accounts[0].substring(36,42)
                 this.setState({ metaMask: true, account: acc });
@@ -82,7 +98,7 @@ class navBar extends Component {
                         <img
                             style={{width:"15%", float: "right"}}
                             className="nav-link"
-                            src={Default_avatar}
+                            src={!this.state.user?Default_avatar:"http://"+this.state.user.pic}
                             alt=""
                         /><br/>
                         <label style={{float: "right"}}>{this.state.account}</label>
