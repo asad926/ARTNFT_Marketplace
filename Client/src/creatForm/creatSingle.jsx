@@ -131,7 +131,7 @@ class creatSingle extends Component {
         let v1CID = await this.addedToIpfs();
 
         data.append("ipfsHash", v1CID);
-        let link = "http://localhost:9000/upload";
+        let link = "/upload";
         try {
             axios({
                 method: "POST",
@@ -228,7 +228,7 @@ class creatSingle extends Component {
             auction: auctionData
         }
 
-        let link = "http://localhost:9000/nfts/save";
+        let link = "/nfts/save";
         try {
             axios({
                 method: "POST",

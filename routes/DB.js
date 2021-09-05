@@ -21,7 +21,6 @@ router.get('/:id',async function(req, res, next) {
 
 router.post('/save',async function(req, res, next) {
     let nft = req.body;
-    console.log(JSON.stringify(nft))
     try{
      await DB.insertNftsData(nft)
   }catch(e){console.log(e)}
@@ -31,7 +30,6 @@ router.post('/save',async function(req, res, next) {
  router.post('/update/:id',async function(req, res, next) {
    let id = req.params.id;
    let nft = req.body;
-   console.log(JSON.stringify(nft))
    try{
     await DB.updateNftsData(id,nft)
  }catch(e){console.log(e)}
@@ -41,7 +39,6 @@ router.post('/save',async function(req, res, next) {
 router.post('/bid/:id',async function(req, res, next) {
    let id = req.params.id;
    let bid = req.body;
-   console.log(JSON.stringify(bid))
    try{
     await DB.updateBidData(id,bid)
  }catch(e){console.log(e)}
@@ -52,7 +49,6 @@ router.post('/auction/:id',async function(req, res, next) {
    let id = req.params.id;
    let owner = req.body;
    if(owner.newOwner)
-   console.log("newOwner: "+owner.newOwner)
    try{
     await DB.updateAuctionData(id,owner.newOwner)
  }catch(e){console.log(e)}

@@ -32,7 +32,6 @@ module.exports = {
   },
 
   updateNftsData: function (id, nfts, callback) {
-    console.log("Update Id: " + id);
     let pr = nfts.price;
     delete nfts.price;
     MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
@@ -46,7 +45,6 @@ module.exports = {
     })
   },
   updateAuctionData: function (id, newOwner, callback) {
-    console.log("Update Id: " + id);
     MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
       if (err) throw err;
       dbo = client.db(database);
@@ -65,7 +63,6 @@ module.exports = {
     })
   },
   updateBidData: function (id, bid, callback) {
-    console.log("Update Id: " + id);
     MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
       if (err) throw err;
       dbo = client.db(database);

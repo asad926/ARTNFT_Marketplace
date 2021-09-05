@@ -60,7 +60,7 @@ isMetaMaskInstalled() {
         Nft721.abi, Nft721.contractAddress);
 
         this.setState({nft721: n721});
-
+      
       let n1155 = new web3.eth.Contract(
             Nft1155.abi, Nft1155.contractAddress);
         this.setState({nft1155: n1155});
